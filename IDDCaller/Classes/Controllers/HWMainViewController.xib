@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HWMainViewController">
             <connections>
+                <outlet property="btnCountryCode" destination="XYM-4n-AoK" id="cHx-fP-n2N"/>
+                <outlet property="btnIDD" destination="io0-Ex-uRt" id="IXq-Re-1az"/>
                 <outlet property="countryCode" destination="38t-Su-fxM" id="LMa-k5-RJa"/>
                 <outlet property="name" destination="taR-qY-5Em" id="bio-aD-OZ6"/>
                 <outlet property="number" destination="TI0-rQ-ub6" id="Zlg-Sm-NKt"/>
@@ -19,30 +21,34 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vop-UH-4xj" customClass="TPKeyboardAvoidingScrollView">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vop-UH-4xj" customClass="TPKeyboardAvoidingScrollView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="018" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5e-pc-MDq">
-                            <rect key="frame" x="77" y="388" width="45" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="018" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5e-pc-MDq">
+                            <rect key="frame" x="77" y="400" width="45" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="JAd-lb-IBY"/>
                             </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="988838517" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TI0-rQ-ub6" userLabel="Round Style Text Field - number">
-                            <rect key="frame" x="172" y="388" width="130" height="30"/>
+                            <rect key="frame" x="172" y="400" width="130" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="1gm-u0-9M9"/>
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd4-uv-Rwh">
-                            <rect key="frame" x="76" y="440" width="150" height="54"/>
+                            <rect key="frame" x="85" y="471" width="150" height="54"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="CALL">
@@ -54,7 +60,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-ce-FeY">
-                            <rect key="frame" x="19" y="392" width="50" height="21"/>
+                            <rect key="frame" x="20" y="402" width="50" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <nil key="highlightedColor"/>
@@ -73,36 +79,69 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VO7-sv-swy">
-                            <rect key="frame" x="247" y="440" width="55" height="54"/>
+                            <rect key="frame" x="247" y="471" width="55" height="54"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Other">
+                            <state key="normal" title="Contact">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="btnOtherTapped:" destination="-1" eventType="touchUpInside" id="1a7-vz-k28"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="84" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38t-Su-fxM" userLabel="Round Style Text Field - Country Code">
-                            <rect key="frame" x="124" y="388" width="45" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="84" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38t-Su-fxM" userLabel="Round Style Text Field - Country Code">
+                            <rect key="frame" x="124" y="400" width="45" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IDD Caller " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ct8-B1-JSo">
-                            <rect key="frame" x="75" y="180" width="171" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IDD Caller " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ct8-B1-JSo">
+                            <rect key="frame" x="75" y="20" width="170" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="26a-R8-l7w"/>
+                                <constraint firstAttribute="width" constant="170" id="WhW-FV-nZL"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Demo by Hw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-UD-4Mu">
-                            <rect key="frame" x="77" y="224" width="166" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo by Hw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-UD-4Mu">
+                            <rect key="frame" x="77" y="49" width="166" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="166" id="BuU-n5-iZB"/>
+                                <constraint firstAttribute="height" constant="21" id="isy-0w-Y3o"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="io0-Ex-uRt" userLabel="Button - idd">
+                            <rect key="frame" x="77" y="388" width="46" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYM-4n-AoK" userLabel="Button - country">
+                            <rect key="frame" x="123" y="388" width="46" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnCountryCodeTouchDown:" destination="-1" eventType="touchDown" id="lWN-fI-RSb"/>
+                            </connections>
+                        </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="Ct8-B1-JSo" firstAttribute="leading" secondItem="vop-UH-4xj" secondAttribute="leading" constant="75" id="53k-jS-q9n"/>
+                        <constraint firstItem="jqZ-UD-4Mu" firstAttribute="leading" secondItem="vop-UH-4xj" secondAttribute="leading" constant="77" id="En5-KV-xfw"/>
+                        <constraint firstItem="jqZ-UD-4Mu" firstAttribute="top" secondItem="Ct8-B1-JSo" secondAttribute="bottom" constant="8" id="Wfn-si-Iaj"/>
+                        <constraint firstItem="Ct8-B1-JSo" firstAttribute="top" secondItem="vop-UH-4xj" secondAttribute="top" constant="20" id="z9b-OG-oie"/>
+                    </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

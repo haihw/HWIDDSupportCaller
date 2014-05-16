@@ -13,8 +13,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *number;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UITextField *countryCode;
+@property (strong, nonatomic) IBOutlet UIButton *btnIDD;
+@property (strong, nonatomic) IBOutlet UIButton *btnCountryCode;
 
 - (IBAction)btnCallTapped:(id)sender;
 - (IBAction)btnOtherTapped:(id)sender;
+- (IBAction)btnCountryCodeTouchDown:(id)sender;
+- (IBAction)btnIddTouchDown:(id)sender;
 
 @end

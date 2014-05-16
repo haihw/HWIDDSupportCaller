@@ -9,7 +9,8 @@
 #import "HWMainViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
 @interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate>
-
+{
+}
 @end
 
 @implementation HWMainViewController
@@ -27,8 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [self showAddressBook];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -102,12 +103,18 @@
     return newNumber;
 }
 - (IBAction)btnCallTapped:(id)sender {
-    NSString *number = [NSString stringWithFormat:@"%@%@", _prefix.text, _number.text];
-    NSString *phoneNumber = [@"telprompt://" stringByAppendingString:number];
+    NSString *number = [NSString stringWithFormat:@"%@%@%@", _prefix.text, _countryCode.text, _number.text];
+    NSString *phoneNumber = [@"telprompt://" stringByAppendingString:[number stringByReplacingOccurrencesOfString:@" " withString:@""]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
 }
 
 - (IBAction)btnOtherTapped:(id)sender {
     [self showAddressBook];
+}
+
+- (IBAction)btnCountryCodeTouchDown:(id)sender {
+}
+
+- (IBAction)btnIddTouchDown:(id)sender {
 }
 @end
