@@ -8,7 +8,9 @@
 
 #import "HWMainViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
-@interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate>
+#import "HWCountryCodeViewController.h"
+#import "HWIDDViewController.h"
+@interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate, HWCountryCodeViewControllerDelegate, HWIDDViewControllerDelegate>
 {
 }
 @end
@@ -28,6 +30,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSString *iddCode = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyIDDPrefix];
+    NSString *countryCode = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyCountryCode];
+    
+    _prefix.text = iddCode;
+    _countryCode.text = countryCode;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -94,8 +101,7 @@
 }
 - (NSString *) strimNumber: (NSString *)number
 {
-    NSString *newNumber = [number stringByReplacingOccurrencesOfString:@"+" withString:@""];
-    
+    NSString *newNumber = [[number stringByReplacingOccurrencesOfString:@"+" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     while ([newNumber characterAtIndex:0] == '0'){
         newNumber = [number substringFromIndex:1];
     }
@@ -113,8 +119,29 @@
 }
 
 - (IBAction)btnCountryCodeTouchDown:(id)sender {
+    HWCountryCodeViewController *countryCodeVc = [HWCountryCodeViewController sharedInstance];
+    countryCodeVc.delegate = self;
+    [self presentViewController:countryCodeVc animated:YES completion:nil];
 }
 
 - (IBAction)btnIddTouchDown:(id)sender {
+    HWIDDViewController *iddVc = [[HWIDDViewController alloc] init];
+    iddVc.delegate = self;
+    [self presentViewController:iddVc animated:YES completion:nil];
+
+}
+
+#pragma mark - country code delegate
+- (void)countryCodeController:(HWCountryCodeViewController *)controller didSelectCode:(NSString *)countryCode
+{
+    _countryCode.text = [self strimNumber:countryCode];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:_countryCode.text forKey:kKeyCountryCode];
+}
+- (void)iddViewController:(HWIDDViewController *)controller didSelectIDD:(NSString *)iddNumber
+{
+    _prefix.text = iddNumber;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:_prefix.text forKey:kKeyCountryCode];
 }
 @end

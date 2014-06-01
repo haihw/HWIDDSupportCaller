@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol HWCountryCodeViewControllerDelegate;
 @interface HWCountryCodeViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) id <HWCountryCodeViewControllerDelegate> delegate;
+- (IBAction)btnCancelTapped:(id)sender;
 +(id)sharedInstance;
+@end
+
+@protocol HWCountryCodeViewControllerDelegate <NSObject>
+
+- (void)countryCodeController :(HWCountryCodeViewController *)controller didSelectCode:(NSString *)countryCode;
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Hf5-Lj-9Eh">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Hf5-Lj-9Eh">
                     <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,28 +26,26 @@
                         <outlet property="delegate" destination="-1" id="1Lf-rK-c9y"/>
                     </connections>
                 </tableView>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DHE-fd-VPr">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="DHE-fd-VPr">
+                    <rect key="frame" x="0.0" y="2" width="253" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Lsn-Dw-vdu"/>
-                    </constraints>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Ggh-1H-dUH"/>
                     </connections>
                 </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jun-97-sUv">
+                    <rect key="frame" x="253" y="5" width="67" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnCancelTapped:" destination="-1" eventType="touchUpInside" id="oof-FO-Fxz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="DHE-fd-VPr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AvW-8K-Kxv"/>
-                <constraint firstItem="Hf5-Lj-9Eh" firstAttribute="top" secondItem="DHE-fd-VPr" secondAttribute="bottom" id="Hcd-O4-vKH"/>
-                <constraint firstAttribute="trailing" secondItem="DHE-fd-VPr" secondAttribute="trailing" id="WOg-px-0bU"/>
-                <constraint firstAttribute="bottom" secondItem="Hf5-Lj-9Eh" secondAttribute="bottom" id="iPc-Xs-cbf"/>
-                <constraint firstAttribute="trailing" secondItem="Hf5-Lj-9Eh" secondAttribute="trailing" id="oxv-rp-Ys3"/>
-                <constraint firstItem="DHE-fd-VPr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qIg-cY-4xM"/>
-                <constraint firstItem="Hf5-Lj-9Eh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wIL-CI-RYf"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
