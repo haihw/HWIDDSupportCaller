@@ -142,6 +142,6 @@
 {
     _prefix.text = iddNumber;
     [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSUserDefaults standardUserDefaults] setObject:_prefix.text forKey:kKeyCountryCode];
+    [[NSUserDefaults standardUserDefaults] setObject:_prefix.text forKey:kKeyIDDPrefix];
 }
 @end
