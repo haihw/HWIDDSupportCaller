@@ -82,11 +82,11 @@ xcuserdata
 #
 # NB: this is exclusive with OPTION 1 above
 #
-#xcuserdata/**/*
+xcuserdata/**/*
 
 #     (requires option 2 above): Personal Schemes
 #
-#!xcuserdata/**/xcschemes/*
+!xcuserdata/**/xcschemes/*
 
 # AppCode specific files
 .idea/*
@@ -115,8 +115,8 @@ xcuserdata
 #         (private scheme).xcscheme
 #         xcschememanagement.plist
 #
-#
-HubbingConsultant.xcodeproj/project.xcworkspace/xcshareddata
+IDDCaller.xcodeproj/project.xcworkspace/xcshareddata
+IDDCaller.xcworkspace/xcshareddata
 # AppCode specific files
 .idea/*
 *.iml

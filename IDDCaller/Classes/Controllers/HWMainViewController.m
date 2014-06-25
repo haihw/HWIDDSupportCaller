@@ -80,10 +80,12 @@
         if ([phone characterAtIndex:0] == '+')
         {
             _countryCode.enabled = NO;
+            _btnCountryCode.userInteractionEnabled = NO;
             _countryCode.text = @"";
         } else
         {
             _countryCode.enabled = YES;
+            _btnCountryCode.userInteractionEnabled = YES;
             _countryCode.text = @"84";
         }
         _number.text = [self strimNumber:phone];

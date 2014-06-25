@@ -83,7 +83,7 @@
 }
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [NSString stringWithFormat:@"CountryCell_%d", indexPath.row];
+    NSString *identifier = [NSString stringWithFormat:@"CountryCell_%d", (int)indexPath.row];
     HWCountryTableViewCell *cell;
     cell = [[HWCountryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     cell.countryName.text = [displayCountries[indexPath.row] valueForKey:@"name"];
