@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HWMainViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITableView *tableHistory;
 @property (strong, nonatomic) IBOutlet UITextField *prefix;
 @property (strong, nonatomic) IBOutlet UITextField *number;
 @property (strong, nonatomic) IBOutlet UILabel *name;

@@ -13,6 +13,7 @@
                 <outlet property="name" destination="taR-qY-5Em" id="bio-aD-OZ6"/>
                 <outlet property="number" destination="TI0-rQ-ub6" id="Zlg-Sm-NKt"/>
                 <outlet property="prefix" destination="k5e-pc-MDq" id="WJg-yv-aFa"/>
+                <outlet property="tableHistory" destination="aHu-T8-ff8" id="Pdm-cW-s7a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,7 +38,7 @@
                             </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TI0-rQ-ub6" userLabel="Round Style Text Field - number">
-                            <rect key="frame" x="181" y="400" width="121" height="30"/>
+                            <rect key="frame" x="186" y="400" width="116" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textColor" red="0.20000000000000001" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,7 +108,7 @@
                             <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Hai Hw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-UD-4Mu">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Hw" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-UD-4Mu">
                             <rect key="frame" x="77" y="49" width="166" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -138,6 +139,15 @@
                                 <action selector="btnCountryCodeTouchDown:" destination="-1" eventType="touchDown" id="lWN-fI-RSb"/>
                             </connections>
                         </button>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aHu-T8-ff8">
+                            <rect key="frame" x="0.0" y="78" width="320" height="240"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="HNj-tK-YOt"/>
+                                <outlet property="delegate" destination="-1" id="48W-Ox-yim"/>
+                            </connections>
+                        </tableView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="Ct8-B1-JSo" firstAttribute="leading" secondItem="vop-UH-4xj" secondAttribute="leading" constant="75" id="53k-jS-q9n"/>

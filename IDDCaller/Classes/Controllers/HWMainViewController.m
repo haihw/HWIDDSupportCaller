@@ -10,8 +10,10 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "HWCountryCodeViewController.h"
 #import "HWIDDViewController.h"
-@interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate, HWCountryCodeViewControllerDelegate, HWIDDViewControllerDelegate>
+#import "HWHistoryTableViewCell.h"
+@interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate, HWCountryCodeViewControllerDelegate, HWIDDViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 {
+    NSMutableArray *phoneHistories;
 }
 @end
 
@@ -30,16 +32,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self initData];
+}
+- (void)initData
+{
     NSString *iddCode = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyIDDPrefix];
     NSString *countryCode = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyCountryCode];
     
     _prefix.text = iddCode;
     _countryCode.text = countryCode;
-}
 
+    phoneHistories = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyHistory];
+    if (!phoneHistories)
+    {
+        phoneHistories = [NSMutableArray array];
+    }
+    [_tableHistory reloadData];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [_tableHistory reloadData];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -96,6 +109,11 @@
 }
 
 #pragma mark textfield
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    _name.text = @"";
+    return YES;
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -110,10 +128,23 @@
 
     return newNumber;
 }
-- (IBAction)btnCallTapped:(id)sender {
-    NSString *number = [NSString stringWithFormat:@"%@%@%@", _prefix.text, _countryCode.text, _number.text];
+- (void)callNumber:(NSString *)number
+{
+    //save history
+    NSDictionary *history = @{kKeyHistoryName : _name.text ?: @"",
+                              kKeyHistoryNumber: number,
+                              kKeyHistoryTime: [NSDate date]};
+    [phoneHistories insertObject:history atIndex:0];
+    [[NSUserDefaults standardUserDefaults]  setObject:phoneHistories forKey:kKeyHistory];
+    
+    //call api
     NSString *phoneNumber = [@"telprompt://" stringByAppendingString:[number stringByReplacingOccurrencesOfString:@" " withString:@""]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+    
+}
+- (IBAction)btnCallTapped:(id)sender {
+    NSString *number = [NSString stringWithFormat:@"%@%@%@", _prefix.text, _countryCode.text, _number.text];
+    [self callNumber:number];
 }
 
 - (IBAction)btnOtherTapped:(id)sender {
@@ -145,5 +176,45 @@
     _prefix.text = iddNumber;
     [self dismissViewControllerAnimated:YES completion:nil];
     [[NSUserDefaults standardUserDefaults] setObject:_prefix.text forKey:kKeyIDDPrefix];
+}
+
+#pragma mark TableView
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"History";
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return phoneHistories.count;
+}
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [NSString stringWithFormat:@"HistoryCell%d", (int)indexPath.row];
+    HWHistoryTableViewCell *cell;
+    cell = [[HWHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    NSDictionary *historyElement = phoneHistories[indexPath.row];
+
+    NSString *name = [historyElement objectForKey:kKeyHistoryName];
+    cell.lbName.text = name.length > 0 ? name : @"unknown";
+    cell.lbNumber.text = [historyElement objectForKey:kKeyHistoryNumber];
+    NSDate *date = [historyElement objectForKey:kKeyHistoryTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd/MM/yyy hh:mm:ss";
+    cell.lbTime.text = [formatter stringFromDate:date];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *historyElement = phoneHistories[indexPath.row];
+    NSString *number = [historyElement objectForKey:kKeyHistoryNumber];
+    _name.text = [historyElement objectForKey:kKeyHistoryName];
+    _number.text = @"";
+    if (number.length > 0)
+        [self callNumber:number];
 }
 @end

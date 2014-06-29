@@ -15,4 +15,8 @@
     #import <Foundation/Foundation.h>
 #define kKeyIDDPrefix @"idd_code"
 #define kKeyCountryCode @"country_code"
+#define kKeyHistory @"phone_history"
+#define kKeyHistoryName @"name"
+#define kKeyHistoryNumber @"number"
+#define kKeyHistoryTime @"time"
 #endif

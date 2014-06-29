@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9838FD501EED42D0958E675E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AD6C77EAB64960BA380E68 /* libPods.a */; };
+		C53DCCBB1960844700CBCC7D /* HWHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53DCCB91960844600CBCC7D /* HWHistoryTableViewCell.m */; };
+		C53DCCBC1960844700CBCC7D /* HWHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53DCCBA1960844700CBCC7D /* HWHistoryTableViewCell.xib */; };
+		C53DCCC019608DDA00CBCC7D /* HWMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53DCCBF19608DDA00CBCC7D /* HWMainViewController.xib */; };
 		C5A358311924A12400F886BA /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A358301924A12400F886BA /* countries.json */; };
 		C5A358351924A52A00F886BA /* HWCountryCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A358331924A52A00F886BA /* HWCountryCodeViewController.m */; };
 		C5A358361924A52A00F886BA /* HWCountryCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5A358341924A52A00F886BA /* HWCountryCodeViewController.xib */; };
@@ -26,7 +29,6 @@
 		C5C4BE5A1910A19800B378F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5C4BE531910A19800B378F9 /* Images.xcassets */; };
 		C5C4BE5B1910A19800B378F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C5C4BE551910A19800B378F9 /* InfoPlist.strings */; };
 		C5C4BE5F1910A1E700B378F9 /* HWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C4BE5D1910A1E700B378F9 /* HWMainViewController.m */; };
-		C5C4BE601910A1E700B378F9 /* HWMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C4BE5E1910A1E700B378F9 /* HWMainViewController.xib */; };
 		C5C4BE621910A56200B378F9 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE611910A56200B378F9 /* AddressBook.framework */; };
 		C5C4BE641910A56700B378F9 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE631910A56700B378F9 /* AddressBookUI.framework */; };
 		C5C4BE661910A5BD00B378F9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE651910A5BD00B378F9 /* CoreTelephony.framework */; };
@@ -47,6 +49,10 @@
 /* Begin PBXFileReference section */
 		39AD6C77EAB64960BA380E68 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A41F7218D5430D918AE0DC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C53DCCB81960844600CBCC7D /* HWHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWHistoryTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		C53DCCB91960844600CBCC7D /* HWHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWHistoryTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		C53DCCBA1960844700CBCC7D /* HWHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWHistoryTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		C53DCCBF19608DDA00CBCC7D /* HWMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWMainViewController.xib; sourceTree = "<group>"; };
 		C5A358301924A12400F886BA /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		C5A358321924A52A00F886BA /* HWCountryCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCountryCodeViewController.h; sourceTree = "<group>"; };
 		C5A358331924A52A00F886BA /* HWCountryCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCountryCodeViewController.m; sourceTree = "<group>"; };
@@ -72,7 +78,6 @@
 		C5C4BE561910A19800B378F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C5C4BE5C1910A1E700B378F9 /* HWMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWMainViewController.h; sourceTree = "<group>"; };
 		C5C4BE5D1910A1E700B378F9 /* HWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWMainViewController.m; sourceTree = "<group>"; };
-		C5C4BE5E1910A1E700B378F9 /* HWMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWMainViewController.xib; sourceTree = "<group>"; };
 		C5C4BE611910A56200B378F9 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C5C4BE631910A56700B378F9 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C5C4BE651910A5BD00B378F9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -197,7 +202,7 @@
 			children = (
 				C5C4BE5C1910A1E700B378F9 /* HWMainViewController.h */,
 				C5C4BE5D1910A1E700B378F9 /* HWMainViewController.m */,
-				C5C4BE5E1910A1E700B378F9 /* HWMainViewController.xib */,
+				C53DCCBF19608DDA00CBCC7D /* HWMainViewController.xib */,
 				C5A358321924A52A00F886BA /* HWCountryCodeViewController.h */,
 				C5A358331924A52A00F886BA /* HWCountryCodeViewController.m */,
 				C5A358341924A52A00F886BA /* HWCountryCodeViewController.xib */,
@@ -221,6 +226,9 @@
 				C5D93DC4193B793D00AEF73C /* HWCountryTableViewCell.h */,
 				C5D93DC5193B793D00AEF73C /* HWCountryTableViewCell.m */,
 				C5D93DC6193B793D00AEF73C /* HWCountryTableViewCell.xib */,
+				C53DCCB81960844600CBCC7D /* HWHistoryTableViewCell.h */,
+				C53DCCB91960844600CBCC7D /* HWHistoryTableViewCell.m */,
+				C53DCCBA1960844700CBCC7D /* HWHistoryTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,10 +358,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5C4BE601910A1E700B378F9 /* HWMainViewController.xib in Resources */,
 				C5A358361924A52A00F886BA /* HWCountryCodeViewController.xib in Resources */,
 				C5C4BE5B1910A19800B378F9 /* InfoPlist.strings in Resources */,
+				C53DCCBC1960844700CBCC7D /* HWHistoryTableViewCell.xib in Resources */,
 				C5D93DC8193B793D00AEF73C /* HWCountryTableViewCell.xib in Resources */,
+				C53DCCC019608DDA00CBCC7D /* HWMainViewController.xib in Resources */,
 				C5C4BE5A1910A19800B378F9 /* Images.xcassets in Resources */,
 				C5A358311924A12400F886BA /* countries.json in Resources */,
 				C5A3583B1924A53700F886BA /* HWIDDViewController.xib in Resources */,
@@ -409,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C4BE5F1910A1E700B378F9 /* HWMainViewController.m in Sources */,
+				C53DCCBB1960844700CBCC7D /* HWHistoryTableViewCell.m in Sources */,
 				C5A358351924A52A00F886BA /* HWCountryCodeViewController.m in Sources */,
 				C5A3583A1924A53700F886BA /* HWIDDViewController.m in Sources */,
 				C5D93DC7193B793D00AEF73C /* HWCountryTableViewCell.m in Sources */,
