@@ -9,6 +9,8 @@
 #import "HWAppDelegate.h"
 #import "HWMainViewController.h"
 #import <UI7Kit/UI7Kit.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 @implementation HWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,6 +24,14 @@
     UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:vc];
     [naviVC setNavigationBarHidden:YES];
     self.window.rootViewController = naviVC;
+    
+    CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [netinfo subscriberCellularProvider];
+    NSLog(@"Carrier Name: %@", [carrier carrierName]);
+    NSLog(@"mobileCountryCode: %@", [carrier mobileCountryCode]);
+    NSLog(@"isoCountryCode: %@", [carrier isoCountryCode]);
+    NSLog(@"mobileNetworkCode: %@", [carrier mobileNetworkCode]);
+    NSLog(@"allow voip: %d", [carrier allowsVOIP]);
     return YES;
 }
 

@@ -16,6 +16,11 @@
 		C5A358361924A52A00F886BA /* HWCountryCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5A358341924A52A00F886BA /* HWCountryCodeViewController.xib */; };
 		C5A3583A1924A53700F886BA /* HWIDDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A358381924A53700F886BA /* HWIDDViewController.m */; };
 		C5A3583B1924A53700F886BA /* HWIDDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5A358391924A53700F886BA /* HWIDDViewController.xib */; };
+		C5A8B90119ECBE6600AB5F23 /* BaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B8FF19ECBE6600AB5F23 /* BaseModel.xcdatamodeld */; };
+		C5A8B90519ECC26100AB5F23 /* CallHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B90419ECC26100AB5F23 /* CallHistory.m */; };
+		C5A8B90819ECC26200AB5F23 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B90719ECC26200AB5F23 /* Country.m */; };
+		C5A8B90B19ECC26200AB5F23 /* IDD.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B90A19ECC26200AB5F23 /* IDD.m */; };
+		C5A8B90E19ECC26200AB5F23 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B90D19ECC26200AB5F23 /* Contact.m */; };
 		C5C4BE151910A11500B378F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE141910A11500B378F9 /* Foundation.framework */; };
 		C5C4BE171910A11500B378F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE161910A11500B378F9 /* CoreGraphics.framework */; };
 		C5C4BE191910A11500B378F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C4BE181910A11500B378F9 /* UIKit.framework */; };
@@ -60,6 +65,16 @@
 		C5A358371924A53700F886BA /* HWIDDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWIDDViewController.h; sourceTree = "<group>"; };
 		C5A358381924A53700F886BA /* HWIDDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWIDDViewController.m; sourceTree = "<group>"; };
 		C5A358391924A53700F886BA /* HWIDDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWIDDViewController.xib; sourceTree = "<group>"; };
+		C5A8B90019ECBE6600AB5F23 /* BaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BaseModel.xcdatamodel; sourceTree = "<group>"; };
+		C5A8B90319ECC26100AB5F23 /* CallHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistory.h; sourceTree = "<group>"; };
+		C5A8B90419ECC26100AB5F23 /* CallHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistory.m; sourceTree = "<group>"; };
+		C5A8B90619ECC26200AB5F23 /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		C5A8B90719ECC26200AB5F23 /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		C5A8B90919ECC26200AB5F23 /* IDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDD.h; sourceTree = "<group>"; };
+		C5A8B90A19ECC26200AB5F23 /* IDD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDD.m; sourceTree = "<group>"; };
+		C5A8B90C19ECC26200AB5F23 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		C5A8B90D19ECC26200AB5F23 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		C5A8B90F19ECD01400AB5F23 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C5C4BE111910A11500B378F9 /* IDDCaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDDCaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C4BE141910A11500B378F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C5C4BE161910A11500B378F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,6 +129,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5A8B90219ECC24900AB5F23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5A8B90C19ECC26200AB5F23 /* Contact.h */,
+				C5A8B90D19ECC26200AB5F23 /* Contact.m */,
+				C5A8B90919ECC26200AB5F23 /* IDD.h */,
+				C5A8B90A19ECC26200AB5F23 /* IDD.m */,
+				C5A8B90619ECC26200AB5F23 /* Country.h */,
+				C5A8B90719ECC26200AB5F23 /* Country.m */,
+				C5A8B90319ECC26100AB5F23 /* CallHistory.h */,
+				C5A8B90419ECC26100AB5F23 /* CallHistory.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C5C4BE081910A11500B378F9 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +185,7 @@
 		C5C4BE431910A19800B378F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5A8B90F19ECD01400AB5F23 /* CoreData.framework */,
 				C5C4BE651910A5BD00B378F9 /* CoreTelephony.framework */,
 				C5C4BE631910A56700B378F9 /* AddressBookUI.framework */,
 				C5C4BE611910A56200B378F9 /* AddressBook.framework */,
@@ -180,6 +211,7 @@
 		C5C4BE451910A19800B378F9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C5A8B90219ECC24900AB5F23 /* Models */,
 				C5C4BE461910A19800B378F9 /* AppDelegate */,
 				C5C4BE491910A19800B378F9 /* Controllers */,
 				C5C4BE4A1910A19800B378F9 /* Libs */,
@@ -257,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				C5A358301924A12400F886BA /* countries.json */,
+				C5A8B8FF19ECBE6600AB5F23 /* BaseModel.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -417,8 +450,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A8B90B19ECC26200AB5F23 /* IDD.m in Sources */,
 				C5C4BE5F1910A1E700B378F9 /* HWMainViewController.m in Sources */,
+				C5A8B90519ECC26100AB5F23 /* CallHistory.m in Sources */,
 				C53DCCBB1960844700CBCC7D /* HWHistoryTableViewCell.m in Sources */,
+				C5A8B90E19ECC26200AB5F23 /* Contact.m in Sources */,
+				C5A8B90119ECBE6600AB5F23 /* BaseModel.xcdatamodeld in Sources */,
+				C5A8B90819ECC26200AB5F23 /* Country.m in Sources */,
 				C5A358351924A52A00F886BA /* HWCountryCodeViewController.m in Sources */,
 				C5A3583A1924A53700F886BA /* HWIDDViewController.m in Sources */,
 				C5D93DC7193B793D00AEF73C /* HWCountryTableViewCell.m in Sources */,
@@ -546,6 +584,16 @@
 				GCC_PREFIX_HEADER = "IDDCaller/Others/IDDCaller-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IDDCaller/Others/IDDCaller-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					CoreData,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					UIKit,
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -562,6 +610,16 @@
 				GCC_PREFIX_HEADER = "IDDCaller/Others/IDDCaller-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IDDCaller/Others/IDDCaller-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					CoreData,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					UIKit,
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -638,6 +696,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C5A8B8FF19ECBE6600AB5F23 /* BaseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C5A8B90019ECBE6600AB5F23 /* BaseModel.xcdatamodel */,
+			);
+			currentVersion = C5A8B90019ECBE6600AB5F23 /* BaseModel.xcdatamodel */;
+			path = BaseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C5C4BE091910A11500B378F9 /* Project object */;
 }

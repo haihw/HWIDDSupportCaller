@@ -69,8 +69,14 @@
         [_tableView reloadData];
         return;
     }
-    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
+    NSPredicate *predicate;
+    predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
     displayCountries = [allCountries filteredArrayUsingPredicate:predicate];
+    if (displayCountries.count == 0)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"dial_code CONTAINS[cd] %@", searchText];
+        displayCountries = [allCountries filteredArrayUsingPredicate:predicate];
+    }
     [_tableView reloadData];
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView

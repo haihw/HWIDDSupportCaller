@@ -11,6 +11,7 @@
 #import "HWCountryCodeViewController.h"
 #import "HWIDDViewController.h"
 #import "HWHistoryTableViewCell.h"
+#import "CallHistory.h"
 @interface HWMainViewController () <ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate, HWCountryCodeViewControllerDelegate, HWIDDViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     NSMutableArray *phoneHistories;
@@ -41,13 +42,18 @@
     
     _prefix.text = iddCode;
     _countryCode.text = countryCode;
-
-    phoneHistories = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyHistory];
-    if (!phoneHistories)
-    {
-        phoneHistories = [NSMutableArray array];
-    }
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"history.db"];
+    phoneHistories = [[CallHistory MR_findAllSortedBy:@"callTime" ascending:NO] mutableCopy];
     [_tableHistory reloadData];
+}
+- (void)saveContext {
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"You successfully saved your context.");
+        } else if (error) {
+            NSLog(@"Error saving context: %@", error.description);
+        }
+    }];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -63,18 +69,16 @@
 {
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
+    picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue: NO];
+    picker.predicateForSelectionOfProperty = [NSPredicate predicateWithValue: YES];
     [self presentViewController:picker animated:YES completion:nil];
 }
 #pragma mark showAddresBook
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+//ios 8
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    return YES;
-}
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
     NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(person,
                                                                     kABPersonFirstNameProperty);
@@ -90,28 +94,42 @@
         } else {
             phone = @"[None]";
         }
-        if ([phone characterAtIndex:0] == '+')
+        NSRange vnCodeRange = [phone rangeOfString:@"+84"];
+        if (vnCodeRange.location != NSNotFound)
         {
-            _countryCode.enabled = NO;
-            _btnCountryCode.userInteractionEnabled = NO;
-            _countryCode.text = @"";
-        } else
-        {
-            _countryCode.enabled = YES;
-            _btnCountryCode.userInteractionEnabled = YES;
-            _countryCode.text = @"84";
+            phone = [phone substringFromIndex:vnCodeRange.location + vnCodeRange.length];
         }
-        _number.text = [self strimNumber:phone];
+        _countryCode.text = @"84";
+        _number.text = [self formatIdentificationNumber:phone];
         CFRelease(phoneNumbers);
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    return NO;
 }
-
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+//ios 7
+//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+//{
+//    return YES;
+//}
+//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+//{
+//
+//    return NO;
+//}
+//
 #pragma mark textfield
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     _name.text = @"";
+    NSCharacterSet * invalidNumberSet = [NSCharacterSet characterSetWithCharactersInString: kInvalideNumberCharacters];
+
+    if ([string rangeOfCharacterFromSet:invalidNumberSet].location != NSNotFound)
+    {
+        return NO;
+    }
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -119,23 +137,24 @@
     [textField resignFirstResponder];
     return YES;
 }
-- (NSString *) strimNumber: (NSString *)number
+-(NSString *) formatIdentificationNumber:(NSString *)string
 {
-    NSString *newNumber = [[number stringByReplacingOccurrencesOfString:@"+" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    while ([newNumber characterAtIndex:0] == '0'){
-        newNumber = [number substringFromIndex:1];
-    }
-
-    return newNumber;
+    NSString *newString = [[string componentsSeparatedByCharactersInSet:
+                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                           componentsJoinedByString:@""];
+    return newString;
 }
 - (void)callNumber:(NSString *)number
 {
     //save history
-    NSDictionary *history = @{kKeyHistoryName : _name.text ?: @"",
-                              kKeyHistoryNumber: number,
-                              kKeyHistoryTime: [NSDate date]};
+    CallHistory *history = [CallHistory MR_createEntity];
+    history.contactName = _name.text ?: @"";
+    history.phoneNumber = number;
+    history.callTime = [NSDate date];
+    [self saveContext];
+
     [phoneHistories insertObject:history atIndex:0];
-    [[NSUserDefaults standardUserDefaults]  setObject:phoneHistories forKey:kKeyHistory];
+    [self.tableHistory reloadData];
     
     //call api
     NSString *phoneNumber = [@"telprompt://" stringByAppendingString:[number stringByReplacingOccurrencesOfString:@" " withString:@""]];
@@ -167,7 +186,7 @@
 #pragma mark - country code delegate
 - (void)countryCodeController:(HWCountryCodeViewController *)controller didSelectCode:(NSString *)countryCode
 {
-    _countryCode.text = [self strimNumber:countryCode];
+    _countryCode.text = [self formatIdentificationNumber:countryCode];
     [self dismissViewControllerAnimated:YES completion:nil];
     [[NSUserDefaults standardUserDefaults] setObject:_countryCode.text forKey:kKeyCountryCode];
 }
@@ -196,12 +215,12 @@
     NSString *identifier = [NSString stringWithFormat:@"HistoryCell%d", (int)indexPath.row];
     HWHistoryTableViewCell *cell;
     cell = [[HWHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    NSDictionary *historyElement = phoneHistories[indexPath.row];
+    CallHistory *historyElement = phoneHistories[indexPath.row];
 
-    NSString *name = [historyElement objectForKey:kKeyHistoryName];
+    NSString *name = historyElement.contactName;
     cell.lbName.text = name.length > 0 ? name : @"unknown";
-    cell.lbNumber.text = [historyElement objectForKey:kKeyHistoryNumber];
-    NSDate *date = [historyElement objectForKey:kKeyHistoryTime];
+    cell.lbNumber.text = historyElement.phoneNumber;
+    NSDate *date = historyElement.callTime;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"dd/MM/yyy hh:mm:ss";
     cell.lbTime.text = [formatter stringFromDate:date];
@@ -210,9 +229,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *historyElement = phoneHistories[indexPath.row];
-    NSString *number = [historyElement objectForKey:kKeyHistoryNumber];
-    _name.text = [historyElement objectForKey:kKeyHistoryName];
+    CallHistory *historyElement = phoneHistories[indexPath.row];
+    NSString *number = historyElement.phoneNumber;
+    _name.text =  historyElement.contactName;
     _number.text = @"";
     if (number.length > 0)
         [self callNumber:number];

@@ -13,10 +13,16 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+//#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
+
 #define kKeyIDDPrefix @"idd_code"
 #define kKeyCountryCode @"country_code"
-#define kKeyHistory @"phone_history"
-#define kKeyHistoryName @"name"
-#define kKeyHistoryNumber @"number"
-#define kKeyHistoryTime @"time"
+
+#define kKeyCountryDialCode @"dial_code"
+#define kKeyCountryName @"number"
+
+#define kInvalideNumberCharacters @" \n_!@#$%^&*()[]{}'\".,<>:;|\\/?+=\t~` "
 #endif
+
